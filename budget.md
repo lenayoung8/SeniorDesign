@@ -16,4 +16,4 @@ Our project is focused on developing a software-based IoT security web interface
 - No hardware purchases are required because the system runs on existing laptops.  
 - Estimated hours will be tracked as the project progresses.  
 - Labor cost represents the value of engineering work, not money spent by the team.
-- Current rate is set at $26 an hour for 40 hours of work per team member.
+- Current rate is set at $26 an hour for 40 hours of work per team member, but is subject to change.
