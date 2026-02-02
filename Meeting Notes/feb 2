@@ -17,7 +17,7 @@ Notes
 
 2. New Tasks
     - Jacob: Try and get some of the conversion and storage methods to work so I have a better understanding of how to use them 
-    - Matt:
+    - Matt: apply to mySQL.
     - Lena: look into framework setup, how NodeJS connects to SQL, and JavaScript basics
     - Jules: create tables, write XML file upload script with test data to make sure packet capture data can be uploaded.
     - Austin: 
