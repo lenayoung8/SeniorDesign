@@ -13,7 +13,7 @@ Notes
     - Matt: nmap set up researched and understood. wireshark researched. nmap + tshark design mapped out. 
     - Lena: installed NodeJS, got a sense of how NodeJS works with JavaScript
     - Jules: downloaded DataGrip and MySQL, set up and tested localhost data source on MySQL. Mapped out database layout and determined necessary scripts (one to manage each packet capture database entries and clean after 90 days, one to export Wireshark and Nmap XML files to the SQL database, considering adding a script to manage entries in known devices table).
-    - Austin: installed NodeJS, got a sense of how NodeJS works with JavaScript
+    - Austin: installed NodeJS, set up the project base on local system, write instructions on setup
 
 2. New Tasks
     - Jacob: Try and get some of the conversion and storage methods to work so I have a better understanding of how to use them 
