@@ -9,14 +9,14 @@ Topics
 Notes
 -------------------
 1. Progress
-    - Jacob:
+    - Jacob: Looked into wireshark and how it captures and stores packet data. Found a few options for converting packet data into mySQL
     - Matt: nmap set up researched and understood. wireshark researched. nmap + tshark design mapped out. 
     - Lena: installed NodeJS, got a sense of how NodeJS works with JavaScript
     - Jules:
     - Austin: 
 
 2. New Tasks
-    - Jacob:
+    - Jacob: Try and get some of the conversion and storage methods to work so I have a better understanding of how to use them 
     - Matt:
     - Lena: look into framework setup, how NodeJS connects to SQL, and JavaScript basics
     - Jules:
