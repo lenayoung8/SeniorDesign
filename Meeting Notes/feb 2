@@ -20,4 +20,4 @@ Notes
     - Matt: apply to mySQL.
     - Lena: look into framework setup, how NodeJS connects to SQL, and JavaScript basics
     - Jules: create tables, write XML file upload script with test data to make sure packet capture data can be uploaded.
-    - Austin: Upload into the google drive, make sure to fix any possible troubleshooting 
+    - Austin: Upload into the github drive, make sure to fix any possible troubleshooting 
