@@ -17,7 +17,7 @@ Notes
 
 2. New Tasks
     - Jacob: Fix my issue of storing the converted data correctly in sql
-    - Matt: 
+    - Matt: connect nmap and wireshark to the backend. Finalize demo process route.
     - Lena: install dependencies, work with Austin to see how tasks can be broken down, continue revising final report
     - Jules: Fix Wireshark XML upload script, create Nmap upload script, add changes to Final Report (do tonight!), (stretch goal: start cleanup script for old packet captures.)
     - Austin: Upload the 2nd half later due to its size, optimize the project my removing "bloat" dependancies, upload instructions on installation, 
