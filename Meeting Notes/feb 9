@@ -1,8 +1,10 @@
 Topics
 ------------------
-1. Progress Updates
-2. New Tasks
-3. Record Demos
+Progress Reports
+Next Tasks
+Final Report Progress
+Team Improvements
+Recording Demo
 
 Notes
 -------------------
@@ -10,13 +12,13 @@ Notes
     - Jacob: 
     - Matt: Revised flow chart. Researched nmap + wireshark connection and how to use both. How to setup for demo. How to capture all network traffic. How to connect to MySQL.
     - Lena: Looked over Austin's template, added changes to Final Report, having trouble cloning Repo
-    - Jules: Created SQL database, wrote script to export Wireshark packet captures as XML files and upload them into database, currently working out bugs in script.
+    - Jules: set up MySQL tables with categories and tweaked database settings, wrote a Python script to convert packet captures to XML files and store in database (still debugging)
     - Austin: Just uploaded the 1st half of the base Node.js Project
 
 2. New Tasks
-    - Jacob: 
+    - Jacob: Fix my issue of storing the converted data correctly in sql
     - Matt: 
-    - Lena: clone Repo, install all dependencies & necessary tools
+    - Lena: install dependencies, work with Austin to see how tasks can be broken down, continue revising final report
     - Jules: Fix Wireshark XML upload script, create Nmap upload script, add changes to Final Report (do tonight!), (stretch goal: start cleanup script for old packet captures.)
     - Austin: Upload the 2nd half later due to its size, optimize the project my removing "bloat" dependancies, upload instructions on installation, 
               help with troubleshooting.
