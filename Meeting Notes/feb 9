@@ -10,13 +10,13 @@ Notes
     - Jacob: 
     - Matt: 
     - Lena: Looked over Austin's template, added changes to Final Report, having trouble cloning Repo
-    - Jules: 
+    - Jules: Created SQL database, wrote script to export Wireshark packet captures as XML files and upload them into database, currently working out bugs in script.
     - Austin: Just uploaded the 1st half of the base Node.js Project
 
 2. New Tasks
     - Jacob: 
     - Matt: 
     - Lena: clone Repo, install all dependencies & necessary tools
-    - Jules: 
+    - Jules: Fix Wireshark XML upload script, create Nmap upload script, add changes to Final Report (do tonight!), (stretch goal: start cleanup script for old packet captures.)
     - Austin: Upload the 2nd half later due to its size, optimize the project my removing "bloat" dependancies, upload instructions on installation, 
               help with troubleshooting.
