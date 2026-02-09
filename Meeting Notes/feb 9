@@ -8,7 +8,7 @@ Notes
 -------------------
 1. Progress
     - Jacob: 
-    - Matt: 
+    - Matt: Revised flow chart. Researched nmap + wireshark connection and how to use both. How to setup for demo. How to capture all network traffic. How to connect to MySQL.
     - Lena: Looked over Austin's template, added changes to Final Report, having trouble cloning Repo
     - Jules: Created SQL database, wrote script to export Wireshark packet captures as XML files and upload them into database, currently working out bugs in script.
     - Austin: Just uploaded the 1st half of the base Node.js Project
