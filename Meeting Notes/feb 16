@@ -11,12 +11,12 @@ Notes
     - Jacob: Fixed some of the issues I was haing with storing the data orretly but its still not perfect 
     - Matt: N/A
     - Lena: Restructured/edited Final Report, identified changes that need to be made, edited videos
-    - Jules:
+    - Jules: Got wireshark and nmap code working, started cleanup script, fixed database columns
     - Austin: Uploaded the rest of the Node.js files, made some changes to instructions on installation
 
 2. New Tasks
     - Jacob: Get the converted wireshark data to store 100% corretly 
     - Matt: Connect nmap and wireshark to the backend. Finalize demo process route.
     - Lena: Clone project, work with Austin to see how tasks can be broken down, continue revising final report
-    - Jules:
+    - Jules: Continue to test wireshark and nmap code and ensure it handles large amounts of data well, finish cleanup scripts, finish the other solutions part of the design report (add to section 1.2)
     - Austin: Help with troubleshooting on anyone stalling Node.js, delete uncessessary files in node_module, work with Lena on getting the interface 
