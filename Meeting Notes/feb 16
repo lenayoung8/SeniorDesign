@@ -18,5 +18,5 @@ Notes
     - Jacob: Get the converted wireshark data to store 100% corretly 
     - Matt: Connect nmap and wireshark to the backend. Finalize demo process route.
     - Lena: Clone project, work with Austin to see how tasks can be broken down, continue revising final report
-    - Jules: Continue to test wireshark and nmap code and ensure it handles large amounts of data well, finish cleanup scripts, finish the other solutions part of the design report (add to section 1.2)
+    - Jules: Continue to test wireshark and nmap code and ensure it handles large amounts of data well, find good traffic generator script, finish cleanup script (if necessary), finish the other solutions part of the design report (add to section 1.2)
     - Austin: Help with troubleshooting on anyone stalling Node.js, delete uncessessary files in node_module, work with Lena on getting the interface 
