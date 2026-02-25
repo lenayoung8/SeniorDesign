@@ -1,0 +1,40 @@
+Topics
+------------------
+Progress Reports
+Demos
+Front End Installation
+
+Need 5-min demo done by next Wednesday: Can we have all pieces done by Friday? Can we set up a meeting sometime Saturday to record?
+
+Project Report 2 due next Thursday: PLEASE make necessary edits by Sunday (also log time spent under milestones section)
+  - Jules: Other existing solutions/softwares (section 1.2), update Figure 3.2 to be more general
+  - Matt: Make section in 3.2 just an overview of design choice, and talk about actual alternatives 
+          (router vs. raspberry pi) in section 4.2,
+          Also, make sure the decision references some kind of figure (decision matrix, cost analysis)
+          Update budget (Table 9.1)
+  - Jacob: Add some type of figure to justify your decision (picture, decision matrix, etc.) in section 4.2
+  - Lena: Update Figure 5.2, add Hugging Face dataset citation
+  - Austin: Revise section to make difference between Node and React JS more defined
+
+  ! Need someone to revise Section 2.2 Evaluation Criteria, 
+  
+Next Tasks
+Front End Installation
+
+Monday Meeting: Will go over and record 2nd team meeting to discuss TA feedback
+
+Notes
+-------------------
+1. Progress
+    - Jacob: 
+    - Matt: 
+    - Lena: Got all dependencies set up/cloned repo, Met with Austin and figured out implementation plan for front end
+    - Jules: Finished Wireshark and Nmap scripts, finished cleanup script, cloned repository and downloaded Node.js, finished Section 1.2.
+    - Austin: 
+
+2. New Tasks
+    - Jacob: 
+    - Matt: 
+    - Lena: Keep working on login page, work on Report, meet/email with TA to consult about MVP, edit videos
+    - Jules: Begin a script to add/remove an entry to/from known_devices, arrange meeting with Lena and Austin to talk about implementation for known devices database, arrange meeting with Matt to discuss anomaly detection, arrange meeting with Jacob to talk about where the Wireshark PCAP files will come from.
+    - Austin: 
