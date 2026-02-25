@@ -26,14 +26,14 @@ Monday Meeting: Will go over and record 2nd team meeting to discuss TA feedback
 Notes
 -------------------
 1. Progress
-    - Jacob: 
+    - Jacob: Got the wireshark data to be stored correctly into mysql 
     - Matt: 
     - Lena: Got all dependencies set up/cloned repo, Met with Austin and figured out implementation plan for front end
     - Jules: Finished Wireshark and Nmap scripts, finished cleanup script, cloned repository and downloaded Node.js, finished Section 1.2.
     - Austin: Met with Lena to get the Node.JS project working on Mac, figure out implementation plans for front end
 
 2. New Tasks
-    - Jacob: 
+    - Jacob: Find a way to automate the storing and converting of the wrireshark data 
     - Matt: 
     - Lena: Keep working on login page, work on Report, meet/email with TA to consult about MVP, edit videos
     - Jules: Begin a script to add/remove an entry to/from known_devices, arrange meeting with Lena and Austin to talk about implementation for known devices database, arrange meeting with Matt to discuss anomaly detection, arrange meeting with Jacob to talk about where the Wireshark PCAP files will come from.
