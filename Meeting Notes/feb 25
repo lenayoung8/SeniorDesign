@@ -36,5 +36,5 @@ Notes
     - Jacob: Find a way to automate the storing and converting of the wrireshark data 
     - Matt: connect scanner to backend API route. sotre results SQL. integrate tshark. tune out pi deployment. 
     - Lena: Keep working on login page, work on Report, meet/email with TA to consult about MVP, edit videos
-    - Jules: Begin a script to add/remove an entry to/from known_devices, arrange meeting with Lena and Austin to talk about implementation for known devices database, arrange meeting with Matt to discuss anomaly detection, arrange meeting with Jacob to talk about where the Wireshark PCAP files will come from.
+    - Jules: Redo my visual in the report, begin a script to add/remove an entry to/from known_devices, arrange meeting with Lena and Austin to talk about implementation for known devices database, arrange meeting with Matt to discuss anomaly detection, arrange meeting with Jacob to talk about where the Wireshark PCAP files will come from, add nmap and wireshark -o functionality, add username/password database
     - Austin: Begin on a prototype for the main page 
