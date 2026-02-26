@@ -12,11 +12,10 @@ Project Report 2 due next Thursday: PLEASE make necessary edits by Sunday (also 
           (router vs. raspberry pi) in section 4.2,
           Also, make sure the decision references some kind of figure (decision matrix, cost analysis)
           Update budget (Table 9.1)
+          Revise Section 2.2 Evaluation Criteria
   - Jacob: Add some type of figure to justify your decision (picture, decision matrix, etc.) in section 4.2
   - Lena: Update Figure 5.2, add Hugging Face dataset citation
   - Austin: Revise section to make difference between Node and React JS more defined
-
-  ! Need someone to revise Section 2.2 Evaluation Criteria, 
   
 Next Tasks
 Front End Installation
@@ -38,3 +37,9 @@ Notes
     - Lena: Keep working on login page, work on Report, meet/email with TA to consult about MVP, edit videos
     - Jules: Redo my visual in the report, begin a script to add/remove an entry to/from known_devices, arrange meeting with Lena and Austin to talk about implementation for known devices database, arrange meeting with Matt to discuss anomaly detection, arrange meeting with Jacob to talk about where the Wireshark PCAP files will come from, add nmap and wireshark -o functionality, add username/password database
     - Austin: Begin on a prototype for the main page 
+
+
+- Saturday: Connect front & back end
+- Sunday: Finish tasks
+- Monday: Record 5-minute MVP Video
+- Wednesday: Record Team Meeting
