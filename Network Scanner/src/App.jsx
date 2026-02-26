@@ -1,29 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/login/login';
+import Deer from './pages/deer/deer';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      
-      <h1>Vite + React</h1>
-      <img src="./src/assets/deer-buck.gif" width="300" alt="React logo" />
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Congrats! You successfully installed it!
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Deer />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
+
