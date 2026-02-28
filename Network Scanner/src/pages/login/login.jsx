@@ -6,12 +6,36 @@ import deerGif from '../../assets/deer-buck.gif';
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Always go to Deer page (the "home page")
-    navigate('/home');
+    setError('');
+
+    const formData = new FormData();
+    formData.append('user_name', username);
+    formData.append('password', password);
+    formData.append('login', 'Login');
+
+    try {
+      const response = await fetch('login_process.php', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.status === 200) {
+        navigate('/home');
+      } else if (response.status === 401) {
+        setError(data.message || 'Invalid username or password');
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
+    } catch (err) {
+      setError('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -34,6 +58,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {error && <p className="login-error">{error}</p>}
         <button type="submit">Login</button>
       </form>
     </div>
