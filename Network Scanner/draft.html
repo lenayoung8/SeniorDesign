@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		body { 
+			font-family: Helvetica;
+			margin: 0; 
+		}
+
+		/* Firefox */
+		* {
+		scrollbar-width: thin;
+  		scrollbar-color: #CBCBCB transparent;
+		}
+
+		/* Chrome, Edge, Safari */
+		::-webkit-scrollbar {
+		width: 10px;
+		}
+
+		::-webkit-scrollbar-track {
+		background-color: #FFF;
+		}
+
+		::-webkit-scrollbar-thumb {
+		background-color: #CBCBCB;
+		outline: 2px solid #FFF;
+		outline-offset: -2px;
+		border: 0.1px solid #B7B7B7;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+		background-color: #909090;
+		}
+
+		::-webkit-scrollbar-button {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+
+		.topnav {
+			background-color: #5584a4;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			padding: 15px 30px;
+			box-sizing: border-box;
+		}
+		.topnav a {
+			color: #f2f2f2;
+			text-decoration: none;
+			font-size: 17px;
+		}
+		.topnav a:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		.container {
+			display: flex;
+			width: 100%;
+		}
+
+		.column {
+			width: 50%;
+			padding: 1rem;
+			box-sizing: border-box;
+		}
+
+		#idname {
+			color: white;
+			text-align: left;
+		}
+
+		#pagename {
+			text-align: right;
+		}
+
+		#DevicesBox{
+			height: 50vh;
+			overflow-y: auto;
+			max-height: 300px;
+			background-color: #e6eaf3;
+		}
+
+		#DevicesConnected {
+			/*outline: 1px solid black;*/
+			overflow-y: auto;
+			height: 50vh;
+			background-color: #e6eaf3;
+			
+		}
+
+		#GraphBox {
+			/*utline: 1px solid black;*/
+			overflow-y: auto;
+			height: 50vh;
+			background-color: #e6eaf3;
+		}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="topnav">
+
+			<span id="idname">Hi, John</span>
+			<a href="#home">Home</a>
+			</div>
+
+			<div style="padding: 60px 20px 0;">
+			<h3>Your Devices At a Glance</h3>
+				<div id="DevicesBox">
+					<p>Display Devices and Icons Here</p>
+					<img src="src/assets/deer-buck.gif">
+					<img src="src/assets/deer-buck.gif">
+					</br>
+					<img src="src/assets/deer-buck.gif">
+				</div>
+			
+			<div class="container">
+				<div class="column">
+					<h3>Devices Trying to Connect</h3>
+					<div id="DevicesConnected">
+						<p>Display Devices wanting to connect here</p>
+						<img src="src/assets/deer-buck.gif">
+						<img src="src/assets/deer-buck.gif">
+						</br>
+						<img src="src/assets/deer-buck.gif">
+					</div>
+				</div>
+
+				<div class="column">
+					<h3>Graph</h3>
+					<div id="GraphBox">
+						<!-- Use Chart.JS for visuals here -->
+						<p>Use Chart.JS to display a graph here maybe?</p>
+						<img src="src/assets/deer-buck.gif">
+						<img src="src/assets/deer-buck.gif">
+						</br>
+						<img src="src/assets/deer-buck.gif">
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+</html>
