@@ -2,11 +2,14 @@
 <html>
 	<head>
 		<style>
+		
+		/* General Styling */
 		body { 
 			font-family: Helvetica;
 			margin: 0; 
 		}
 
+		/* Scrollbar Design*/
 		/* Firefox */
 		* {
 		scrollbar-width: thin;
@@ -39,6 +42,7 @@
 			height: 0;
 		}
 
+		/* Creates the top navbar */
 		.topnav {
 			background-color: #5584a4;
 			position: fixed;
@@ -79,11 +83,25 @@
 			text-align: right;
 		}
 
+		/* Create lower left panel design*/
 		#DevicesBox{
 			height: 50vh;
 			overflow-y: auto;
 			max-height: 300px;
 			background-color: #e6eaf3;
+		}
+
+		#DevicesTable {
+			/* border: 2px solid black; */
+			width: 100%
+		}
+
+		#DevicesTable th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #5584a4;
+			color: white;
 		}
 
 		#DevicesConnected {
@@ -126,10 +144,32 @@
 					<h3>Devices Trying to Connect</h3>
 					<div id="DevicesConnected">
 						<p>Display Devices wanting to connect here</p>
-						<img src="src/assets/deer-buck.gif">
-						<img src="src/assets/deer-buck.gif">
-						</br>
-						<img src="src/assets/deer-buck.gif">
+						<table id="DevicesTable">
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Seen Before</th>
+								<th>SafetyRating</th>
+							</tr>
+							<tr>
+								<td>Bass Speaker</td>
+								<td>BT Speaker</td>
+								<td>Yes</td>
+								<td>10</td>
+							</tr>
+							<tr>
+								<td>???</td>
+								<td>???</td>
+								<td>???</td>
+								<td>???</td>
+							</tr>
+							<tr>
+								<td>???</td>
+								<td>???</td>
+								<td>???</td>
+								<td>???</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 
