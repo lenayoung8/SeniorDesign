@@ -1,0 +1,25 @@
+Explico: Gives more in-depth, reconstructed data (any voice or image data)
+ntopng: Can run on any device, has its own traffic monitoring
+Sniffnet: More lightweight than wireshark
+
+For Demo:
+- Need access point
+- 2 or 3 nodes around access point
+- Need one master node to see all data going through the access point
+- Try injecting packets on other nodes
+
+For Testing:
+- Could access test lab at UT medical center
+- Has its own access point and private network
+- Also has IoT devices we can work with - want a good variety
+
+Identifying IoT Devices
+- Protocol: MQTT
+- Use MAC Address to identify devices
+- OUI Lookup Tool in Wireshark
+
+Device Management
+- Whitelisting: On application and router side
+- Applications for whitelisting exist already
+- Would need MAC address and maybe IP for whitelisting -> Can integrate into mySQL known devices DB
+
