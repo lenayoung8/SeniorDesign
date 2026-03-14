@@ -74,12 +74,23 @@ export default function Deer() {
           <div className="column">
             <h3>Graph</h3>
             <div id="GraphBox">
-              {/* Use Chart.JS to display a graph here */}
-              <p>Use Chart.JS to display a graph here maybe?</p>
-              <img src={deerGif} alt="deer" />
-              <img src={deerGif} alt="deer" />
-              <br />
-              <img src={deerGif} alt="deer" />
+              <Bar
+                data={{
+                  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                  datasets: [{
+                    label: 'Devices Connected',
+                    data: [3, 5, 2, 8, 4],
+                    backgroundColor: '#5584a4',
+                  }]
+                }}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Weekly Device Activity' }
+                  }
+                }}
+              />
             </div>
           </div>
         </div>
