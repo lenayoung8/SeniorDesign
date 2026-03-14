@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/login/login';
+import Home from './pages/home/home';
 import Deer from './pages/deer/deer';
 
 function App() {
