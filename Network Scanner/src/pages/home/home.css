@@ -1,6 +1,5 @@
 /* General Styling */
 body { 
-	font-family: Helvetica;
 	margin: 0; 
 }
 
@@ -49,13 +48,12 @@ background-color: #909090;
 	box-sizing: border-box;
 }
 .topnav a {
-	color: #f2f2f2;
+	color: white;
 	text-decoration: none;
 	font-size: 17px;
 }
 .topnav a:hover {
-	background-color: #ddd;
-	color: black;
+	color: #dfe8ed;
 }
 
 .container {
@@ -78,45 +76,65 @@ background-color: #909090;
 	text-align: right;
 }
 
-/* Create lower left panel design*/
+/* Your Devices at a Glance */
 #DevicesBox{
 	height: 50vh;
-	overflow-y: auto;
 	max-height: 300px;
-	background-color: #e6eaf3;
+	background-color: #dfe8ed;
+	border: 2px solid #a3b1ba;
+  	border-radius: 10px;
+  	padding: 15px;
+  	margin-top: 10px;
+  	overflow-y: auto;
+  	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+/* Devices trying to connect box */
 #DevicesTable {
 	/* border: 2px solid black; */
-	width: 100%
+	width: 100%;
+	background-color: #dfe8ed;
+	border: 2px solid #a3b1ba;
+  	border-radius: 10px;
+  	padding: 15px;
+  	margin-top: 10px;
+  	overflow-y: auto;
+  	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+/* Devices trying to connect table */
 #DevicesTable th {
 	padding-top: 12px;
 	padding-bottom: 12px;
-	text-align: left;
-	background-color: #5584a4;
+	text-align: center;
+	background-color: #a3b1ba;
 	color: white;
 }
 
+/* Devices trying to connect table cells */
 #DevicesTable td {
 	padding-top: 12px;
 	padding-bottom: 12px;
-	text-align: left;
-	/* background-color: #5584a4; */
+	text-align: center;
 }
 
+/* Fill space under Devices trying to connect */
 #DevicesConnected {
-	/*outline: 1px solid black;*/
 	overflow-y: auto;
 	height: 50vh;
-	background-color: #e6eaf3;
-	
+	background-color: #fffaf6;
 }
 
 #GraphBox {
 	/*utline: 1px solid black;*/
 	overflow-y: auto;
 	height: 50vh;
-	background-color: #e6eaf3;
+	background-color: #dfe8ed;
+	border: 2px solid #a3b1ba;
+  	border-radius: 10px;
+  	padding: 15px;
+  	margin-top: 10px;
+  	overflow-y: auto;
+  	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+

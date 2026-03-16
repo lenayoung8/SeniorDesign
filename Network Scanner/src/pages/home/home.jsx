@@ -19,7 +19,7 @@ export default function Deer() {
   return (
     <>
       <div className="topnav">
-        <span id="idname">Hi, John</span>
+        <span id="idname">Hello, User</span>
         <a href="#home">Home</a>
       </div>
 
@@ -44,7 +44,7 @@ export default function Deer() {
                     <th>Name</th>
                     <th>Type</th>
                     <th>Seen Before</th>
-                    <th>SafetyRating</th>
+                    <th> Safety Rating</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -80,7 +80,7 @@ export default function Deer() {
                   datasets: [{
                     label: 'Devices Connected',
                     data: [3, 5, 2, 8, 4],
-                    backgroundColor: '#5584a4',
+                    backgroundColor: '#a9ba96',
                   }]
                 }}
                 options={{
