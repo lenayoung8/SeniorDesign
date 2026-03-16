@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
-import deerGif from '../../assets/deer-buck.gif';
+import Logo from '../../assets/logo.png';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -41,7 +41,7 @@ export default function Login() {
   return (
     <div className="login-page">
       <h1>Login</h1>
-      <img src={deerGif} width="200" alt="Deer" />
+      <img src={Logo} width="200" alt="Logo" />
 
       <form className="login-form" onSubmit={handleLogin}>
         <input

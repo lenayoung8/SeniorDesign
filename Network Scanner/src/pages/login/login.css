@@ -26,10 +26,14 @@
 }
 
 .login-form button {
-  background-color: #646cff;
+  background-color: #a9ba96;
   color: white;
 }
 
 .login-form button:hover {
-  background-color: #535bf2;
+  background-color: #2f4257;
+}
+
+body {
+   background-color: #2f4257;
 }
