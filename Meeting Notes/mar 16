@@ -13,7 +13,7 @@ Notes
     - Matt: 
     - Lena: Established base design & palette, edited all videos, 
     - Jules: 
-    - Austin: Seperated Draft.html into a .jsx and .css files
+    - Austin: Separated Draft.html into a .jsx and .css files
 
 2. Product Evaluation 1
     - Jacob: 
@@ -28,3 +28,13 @@ Notes
     - Lena: Device Registration Page, Keep working on design, Finish social impact section of final report
     - Jules: Connect User DB to the PHP login form
     - Austin: Figure out how to get data from the database and display it to home page
+
+Product Evaluation 1
+- Need to connect front and back ends
+- Automatic wireshark scanning in progress
+- Nmap scanning complete
+- All databases set up
+- Working front end framework, base design implemented
+- Need to implement access controls and device registration
+
+
