@@ -5,6 +5,7 @@
   justify-content: center;
   min-height: 100vh;
   padding: 1rem;
+  background-color: #2f4257;
 }
 
 .login-page h1 {
@@ -22,18 +23,14 @@
   padding: 0.5rem;
   width: 250px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #f5efeb;
 }
 
 .login-form button {
   background-color: #a9ba96;
-  color: white;
+  color: #f5efeb;
 }
 
 .login-form button:hover {
-  background-color: #2f4257;
-}
-
-body {
-   background-color: #2f4257;
+  background-color: #768663;
 }

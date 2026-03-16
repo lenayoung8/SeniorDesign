@@ -13,35 +13,36 @@ export default function Login() {
     e.preventDefault();
     setError('');
 
-    const formData = new FormData();
-    formData.append('user_name', username);
-    formData.append('password', password);
-    formData.append('login', 'Login');
+    navigate('/home');
+    // const formData = new FormData();
+    // formData.append('user_name', username);
+    // formData.append('password', password);
+    // formData.append('login', 'Login');
 
-    try {
-      const response = await fetch('login_process.php', {
-        method: 'POST',
-        body: formData,
-      });
+    // try {
+    //   const response = await fetch('login_process.php', {
+    //     method: 'POST',
+    //     body: formData,
+    //   });
 
-      const data = await response.json();
+    //   const data = await response.json();
 
-      if (response.status === 200) {
-        navigate('/home');
-      } else if (response.status === 401) {
-        setError(data.message || 'Invalid username or password');
-      } else {
-        setError('An unexpected error occurred. Please try again.');
-      }
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
-    }
+    //   if (response.status === 200) {
+    //     navigate('/home');
+    //   } else if (response.status === 401) {
+    //     setError(data.message || 'Invalid username or password');
+    //   } else {
+    //     setError('An unexpected error occurred. Please try again.');
+    //   }
+    // } catch (err) {
+    //   setError('Something went wrong. Please try again.');
+    // }
   };
 
   return (
+
     <div className="login-page">
-      <h1>Login</h1>
-      <img src={Logo} width="200" alt="Logo" />
+      <img src={Logo} width="300" alt="Logo" style={{ marginBottom: '24px' }} />
 
       <form className="login-form" onSubmit={handleLogin}>
         <input
