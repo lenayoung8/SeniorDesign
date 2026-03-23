@@ -11,7 +11,7 @@ Notes
     - Lena: Added to social impact section of report, added iterative changes & evaluations section to report, 
       set up lab meeting with Osama
     - Jules: Continued working on access control system, set up automatic Wireshark scans, finished PHP code but not tested much
-    - Austin: 
+    - Austin: Added Express and MySQL2 modules into the project for front and backend connection
 
 2. New Tasks
     - Jacob: 
