@@ -10,12 +10,12 @@ Notes
     - Matt: 
     - Lena: Added to social impact section of report, added iterative changes & evaluations section to report, 
       set up lab meeting with Osama
-    - Jules: 
-    - Austin: Installed Express and MySQL2 modules to the project for connecting the front and backend
+    - Jules: Continued working on access control system, set up automatic Wireshark scans, finished PHP code but not tested much
+    - Austin: 
 
 2. New Tasks
     - Jacob: 
     - Matt: 
     - Lena: Device Registration Page, Keep working on design
-    - Jules: 
-    - Austin: Create a fake database for demonstration via Express, maybe do another google doc writeup?
+    - Jules: Finish access control, add to section 5.3 of the report, work with Austin to get DB data into front end visualizations, test PHP file
+    - Austin: 
