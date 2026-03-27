@@ -1,0 +1,160 @@
+/* General */
+body {
+  margin: 0;
+}
+
+/* Creates the top navbar */
+.topnav {
+	background-color: #2f4257;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 15px 30px;
+	box-sizing: border-box;
+}
+.topnav a {
+	color: white;
+	text-decoration: none;
+	font-size: 17px;
+}
+.topnav a:hover {
+	color: #dfe8ed;
+}
+
+.container {
+	display: flex;
+	width: 100%;
+}
+
+.column {
+	width: 50%;
+	padding: 1rem;
+	box-sizing: border-box;
+}
+
+#idname {
+	color: white;
+	text-align: left;
+}
+
+#pagename {
+	text-align: right;
+}
+
+/* Layout */
+.page-wrap {
+  padding: 90px 20px 40px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Panels */
+.panel {
+  background-color: #dfe8ed;
+  border: 2px solid #a3b1ba;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+/* Grid */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grid-2 {
+  display: flex;
+  gap: 10px;
+}
+
+.grid-2 > div {
+  flex: 1;
+}
+
+/* Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.field-input,
+.field-select,
+.field-textarea {
+  padding: 8px;
+  border: 1px solid #a3b1ba;
+  border-radius: 5px;
+}
+
+.field-input.error,
+.field-select.error {
+  border-color: red;
+}
+
+.field-error {
+  font-size: 11px;
+  color: red;
+}
+
+.field-hint {
+  font-size: 11px;
+  color: #777;
+}
+
+/* Toggle */
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle input {
+  transform: scale(1.2);
+}
+
+/* Footer */
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-reset {
+  background: white;
+  border: 1px solid #a3b1ba;
+}
+
+.btn-submit {
+  background: #2f4257;
+  color: white;
+  border: none;
+}
+
+/* Success */
+.success-panel {
+  background-color: #dfe8ed;
+  border: 2px solid #a3b1ba;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+.success-id {
+  margin: 10px 0;
+  font-weight: bold;
+}
+

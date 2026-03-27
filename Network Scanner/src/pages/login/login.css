@@ -23,12 +23,13 @@
   padding: 0.5rem;
   width: 250px;
   border-radius: 6px;
-  border: 1px solid #f5efeb;
+  border: none;
 }
 
 .login-form button {
   background-color: #a9ba96;
   color: #f5efeb;
+  border: none;
 }
 
 .login-form button:hover {

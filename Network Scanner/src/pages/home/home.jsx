@@ -10,12 +10,13 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { useNavigate } from "react-router-dom";
 
-// You must register the components you use
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Deer() {
-  
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="topnav">
@@ -25,6 +26,8 @@ export default function Deer() {
 
       <div style={{ padding: "60px 20px 0" }}>
         <h3>Your Devices At a Glance</h3>
+        
+        {/* Devices Box */}
         <div id="DevicesBox">
           <p>Display Devices and Icons Here</p>
           <img src={deerGif} alt="deer" />
@@ -33,18 +36,31 @@ export default function Deer() {
           <img src={deerGif} alt="deer" />
         </div>
 
+        
+        {/* Add Device Button */}
+        <div className="add-device-container">
+          <button
+            type="button"
+            className="add-device-btn"
+            onClick={() => navigate("/register")}
+          >
+            Add New Device
+          </button>
+        </div>
+
+        {/* Main lower container */}
         <div className="container">
+          {/* Left column */}
           <div className="column">
             <h3>Devices Trying to Connect</h3>
             <div id="DevicesConnected">
-              {/* Display Devices wanting to connect here */}
               <table id="DevicesTable">
                 <thead>
                   <tr>
                     <th>Name</th>
                     <th>Type</th>
                     <th>Seen Before</th>
-                    <th> Safety Rating</th>
+                    <th>Safety Rating</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,6 +87,7 @@ export default function Deer() {
             </div>
           </div>
 
+          {/* Right column */}
           <div className="column">
             <h3>Graph</h3>
             <div id="GraphBox">
