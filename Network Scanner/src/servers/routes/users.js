@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const db = require('../db');
+import express from 'express';
+import db from '../db.js'; // 👈 .js extension required
 
-// GET all users
+const router = express.Router();
+
 router.get('/', async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM users');
@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST a new user
 router.post('/', async (req, res) => {
   const { name, email } = req.body;
   try {
@@ -26,4 +25,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
