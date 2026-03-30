@@ -11,12 +11,12 @@ Notes
     - Jacob: Researched whitelisitng and worked on permissions and access control 
     - Matt: whitelist and anomaly detection
     - Lena: Finished device registration page, participated in lab testing
-    - Jules:
+    - Jules: Participated in lab testing, researched MQTT and AMQP protocol
     - Austin: Connected frontend to backend, participated in lab testing
 
 2. New Tasks
     - Jacob: Implement whitelisting into the final project 
     - Matt: implement whitelist and some progress on anom detection
     - Lena: Edit videos, discuss 2nd evaluation with Osama, finalizing design report
-    - Jules: 
+    - Jules: Implement whitelist into known devices, update Nmap/Wireshark live captures to scan for MQTT/AMQP protocols, write script that adds info to known_devices and login_info tables
     - Austin: Documentation on frontend/backend connection, create another users.js page ubt for devices
