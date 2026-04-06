@@ -8,32 +8,40 @@ const __dirname = path.dirname(__filename);
 const db = new Database(path.resolve(__dirname, '../../database.db'));
 
 // Clear existing data first
-db.exec(`DELETE FROM users;`);
+db.exec(`
+  DROP TABLE IF EXISTS users;
+  CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL
+  );
+`);
 
 // Insert fake users
 const insert = db.prepare(`
-  INSERT INTO users (name, email) VALUES (?, ?)
+  INSERT INTO users (name, email, password) VALUES (?, ?, ?)
 `);
 
 const fakeUsers = [
-  { name: 'Adele Naumann', email: 'anaumann@example.com' },
-  { name: 'Derek Hutchins', email: 'd3rlord3@example.com' },
-  { name: 'Reimu Hakurei', email: 'reimu@example.com' },
-  { name: 'Ibuki Mioda', email: 'ibuki@example.com' },
-  { name: 'Von Lycaon', email: 'lycaon@example.com' },
-  { name: 'Kuromi', email: 'kuromi@example.com' },
-  { name: 'Kaz Brekker', email: 'brekker@example.com' },
-  { name: 'Beryl Bouanich', email: 'bbouanich@example.com' },
-  { name: 'Don Quixote', email: 'quixote@example.com' },
-  { name: 'Asriel Dreemur', email: 'adreemur@example.com' },
-  { name: 'Hatsune Miku', email: 'hmiku@example.com' },
-  { name: 'Victoria Walker', email: 'pinkpantheress@example.com' },
-  { name: 'Kim Ji-woo', email: 'ChuuLoona@heartattack.com' }
+  { name: 'Adele Naumann', email: 'anaumann@example.com', password: 'admin' },
+  { name: 'Derek Hutchins', email: 'd3rlord3@example.com', password: 'admin'  },
+  { name: 'Reimu Hakurei', email: 'reimu@example.com', password: 'admin'  },
+  { name: 'Ibuki Mioda', email: 'ibuki@example.com', password: 'admin'  },
+  { name: 'Von Lycaon', email: 'lycaon@example.com', password: 'admin'  },
+  { name: 'Marisa Kirisame', email: 'mkirisame@example.com', password: 'admin'  },
+  { name: 'Anthony Simon', email: 'simon@example.com', password: 'admin'  },
+  { name: 'Kaz Brekker', email: 'brekker@example.com', password: 'admin'  },
+  { name: 'Beryl Bouanich', email: 'bbouanich@example.com', password: 'admin'  },
+  { name: 'Don Quixote', email: 'quixote@example.com', password: 'admin'  },
+  { name: 'Hatsune Miku', email: 'hmiku@example.com', password: 'admin'  },
+  { name: 'Victoria Walker', email: 'pinkpantheress@example.com', password: 'admin'  },
+  { name: 'Kim Ji-woo', email: 'ChuuLoona@heartattack.com', password: 'admin'  }
 ];
 
 for (const user of fakeUsers) {
-  insert.run(user.name, user.email);
+  insert.run(user.name, user.email, user.password);
 }
 
-console.log('✅ Database seeded with fake users!');
+console.log('★ Database seeded with fake users!');
 db.close();
