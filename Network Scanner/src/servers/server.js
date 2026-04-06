@@ -1,9 +1,15 @@
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, '../../.env') }); //Same fix
+
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import usersRoute from './routes/users.js'; 
-
-dotenv.config({ path: '../../.env' }); 
 
 const app = express();
 app.use(cors());

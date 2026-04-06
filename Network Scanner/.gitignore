@@ -1,4 +1,7 @@
 # Dependancies
-
 # Block whatever files is on node_modules, prevents having to reinstall ever pull from github
 node_modules/
+
+# Files
+# Prevents the database file from being saved to github
+database.db  
