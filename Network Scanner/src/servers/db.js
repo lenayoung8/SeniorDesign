@@ -64,8 +64,28 @@ if (process.env.DB_TYPE === 'mysql') {
       role TEXT DEFAULT 'user',
       is_owner TEXT DEFAULT 'no'
     );
-
   `);
+
+  /*
+
+    CREATE TABLE IF NOT EXISTS known_networks (
+      
+    );
+
+    CREATE TABLE IF NOT EXISTS known_devices (
+      
+    );
+
+    CREATE TABLE IF NOT EXISTS wireshark_scans (
+      
+    );
+
+    CREATE TABLE IF NOT EXISTS nmap_scans (
+    
+    );
+
+  */
+
   // Wrap SQLite to match MySQL-style usage in routes
   db = {
     query: (sql, params = []) => {
