@@ -1,0 +1,16 @@
+What we have done:
+- Databases
+- Login Page
+- Home Page
+
+What we need still:
+- Graph functionality
+- Devices trying to connect
+- Users devices
+- Anomaly detection: flags unknown new devices, if there's a high spike in traffic, or if a device is trying to connect to an unknown IP
+- Alert notifications: create a simple banner on home page
+
+
+Probably not happening
+- Router side whitelisting: will use the trusted device field instead, and will mention it can connect to a third party whitelisting software but is out of scope
+- Dynamic user registration: Will have a single network configured for demo, with an admin and general user to show RBA function
