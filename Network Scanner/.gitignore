@@ -5,3 +5,4 @@ node_modules/
 # Files
 # Prevents the database file from being saved to github
 database.db  
+.env

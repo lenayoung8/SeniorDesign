@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './login.css';
 import Logo from '../../assets/logo.png';
 
@@ -13,34 +14,29 @@ export default function Login() {
     e.preventDefault();
     setError('');
 
-    navigate('/home');
-    // const formData = new FormData();
-    // formData.append('user_name', username);
-    // formData.append('password', password);
-    // formData.append('login', 'Login');
+    try {
+      const response = await axios.post('/api/auth/login', {
+        username,
+        password
+      });
 
-    // try {
-    //   const response = await fetch('login_process.php', {
-    //     method: 'POST',
-    //     body: formData,
-    //   });
+      if (response.data.success) {
+        // Save user info to localStorage for use across the app
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        navigate('/home');
+      }
 
-    //   const data = await response.json();
-
-    //   if (response.status === 200) {
-    //     navigate('/home');
-    //   } else if (response.status === 401) {
-    //     setError(data.message || 'Invalid username or password');
-    //   } else {
-    //     setError('An unexpected error occurred. Please try again.');
-    //   }
-    // } catch (err) {
-    //   setError('Something went wrong. Please try again.');
-    // }
+    } catch (err) {
+      // 401 = wrong credentials, 500 = server error
+      if (err.response?.status === 401) {
+        setError(err.response.data.message || 'Invalid username or password');
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    }
   };
 
   return (
-
     <div className="login-page">
       <img src={Logo} width="300" alt="Logo" style={{ marginBottom: '24px' }} />
 

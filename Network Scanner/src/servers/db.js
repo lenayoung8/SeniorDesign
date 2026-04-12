@@ -45,15 +45,27 @@ if (process.env.DB_TYPE === 'mysql') {
   const Database = (await import('better-sqlite3')).default;
   const sqlite = new Database('database.db');
 
-  sqlite.exec(`
-    CREATE TABLE IF NOT EXISTS users (
+  /*
+  Old user data table
+
+  CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
       email TEXT NOT NULL,
       password TEXT NOT NULL
     );
-  `);
+  */
 
+  sqlite.exec(`
+    CREATE TABLE IF NOT EXISTS user_info (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT NOT NULL UNIQUE,
+      password TEXT NOT NULL,
+      role TEXT DEFAULT 'user',
+      is_owner TEXT DEFAULT 'no'
+    );
+
+  `);
   // Wrap SQLite to match MySQL-style usage in routes
   db = {
     query: (sql, params = []) => {
