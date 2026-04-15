@@ -12,10 +12,13 @@ import {
 } from 'chart.js';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Deer() {
+
+  // HANDLE USER
   const navigate = useNavigate();
   const [name, setName] = useState('User'); // 👈 Default fallback
 
@@ -29,6 +32,16 @@ export default function Deer() {
       // If no user is logged in, redirect back to login
       navigate('/');
     }
+  }, []);
+
+
+  // HANDLE DEVICES
+  const [devices, setDevices] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/devices/untrusted')
+      .then(res => setDevices(res.data))
+      .catch(err => console.error('Failed to fetch devices:', err));
   }, []);
 
   /*
@@ -83,31 +96,29 @@ export default function Deer() {
               <table id="DevicesTable">
                 <thead>
                   <tr>
-                    <th>Name</th>
                     <th>Type</th>
-                    <th>Seen Before</th>
-                    <th>Safety Rating</th>
+                    <th>MAC Address</th>
+                    <th>IP Address</th>
+                    <th>Connection</th>
+                    <th>Port</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Bass Speaker</td>
-                    <td>BT Speaker</td>
-                    <td>Yes</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>???</td>
-                    <td>???</td>
-                    <td>???</td>
-                    <td>???</td>
-                  </tr>
-                  <tr>
-                    <td>???</td>
-                    <td>???</td>
-                    <td>???</td>
-                    <td>???</td>
-                  </tr>
+                  {devices.length === 0 ? (
+                    <tr>
+                      <td colSpan="5">No untrusted devices found.</td>
+                    </tr>
+                  ) : (
+                    devices.map(device => (
+                      <tr key={device.id}>
+                        <td>{device.type}</td>
+                        <td>{device.mac_address}</td>
+                        <td>{device.ip_address}</td>
+                        <td>{device.connection_type}</td>
+                        <td>{device.port}</td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
