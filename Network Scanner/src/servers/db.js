@@ -64,6 +64,19 @@ if (process.env.DB_TYPE === 'mysql') {
       role TEXT DEFAULT 'user',
       is_owner TEXT DEFAULT 'no'
     );
+
+    CREATE TABLE IF NOT EXISTS known_devices (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      ip_address TEXT,
+      mac_address TEXT,
+      type TEXT,
+      connection_type TEXT,
+      network TEXT,
+      port INTEGER,
+      info TEXT,
+      is_trusted INTEGER
+    );
+
   `);
 
   /*
@@ -72,8 +85,16 @@ if (process.env.DB_TYPE === 'mysql') {
       
     );
 
+    // Used in "Your devices at a glance"
     CREATE TABLE IF NOT EXISTS known_devices (
-      
+      ip_address (int AI PK)
+      mac_address (varchar)
+      type (varchar)
+      connection_type (text)
+      network (text)
+      port (varbinary(4))
+      info (text)
+      is_trusted tinyint(1)
     );
 
     CREATE TABLE IF NOT EXISTS wireshark_scans (

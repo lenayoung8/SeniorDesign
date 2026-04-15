@@ -18,14 +18,15 @@ db.exec(`
       username TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL,
       role TEXT DEFAULT 'user',
-      is_owner TEXT DEFAULT 'no'
+      is_owner TEXT DEFAULT 'no',
+      name TEXT NOT NULL
     );
 `);
 
 // Seed user_info
 const insertUserInfo = db.prepare(`
-  INSERT INTO user_info (username, password, role, is_owner)
-  VALUES (?, ?, ?, ?)
+  INSERT INTO user_info (username, password, role, is_owner, name)
+  VALUES (?, ?, ?, ?, ?)
 `);
 
 /*
@@ -47,23 +48,24 @@ const fakeUsers = [
 */
 
 const fakeUserInfo = [
-  { username: 'anaumann',      password: 'password123', role: 'admin',  is_owner: 'yes' },
-  { username: 'd3rlord3',      password: 'password123', role: 'admin',  is_owner: 'no'  },
-  { username: 'reimu',         password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'ibuki',         password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'lycaon',        password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'kuromi',        password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'brekker',       password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'bbouanich',     password: 'password123', role: 'admin',  is_owner: 'no'  },
-  { username: 'quixote',       password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'adreemur',      password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'hmiku',         password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'pinkpantheress',password: 'password123', role: 'user',   is_owner: 'no'  },
-  { username: 'ChuuLoona',     password: 'password123', role: 'user',   is_owner: 'no'  },
+  { username: 'deeradmin',     password: 'deeradmin', role: 'admin',    is_owner: 'yes', name: "Deer Admin"},
+  { username: 'anaumann',      password: 'password123', role: 'admin',  is_owner: 'yes', name: 'Adele Naumann'},
+  { username: 'd3rlord3',      password: 'password123', role: 'admin',  is_owner: 'yes', name: 'Derek Hutchins'},
+  { username: 'reimu',         password: 'password123', role: 'user',   is_owner: 'yes', name: 'Reimu Hakurei'},
+  { username: 'ibuki',         password: 'password123', role: 'user',   is_owner: 'yes', name: 'Ibuki Mioda' },
+  { username: 'lycaon',        password: 'password123', role: 'user',   is_owner: 'yes', name: 'Von Lycaon' },
+  { username: 'kuromi',        password: 'password123', role: 'user',   is_owner: 'no',  name: 'Kuromi' },
+  { username: 'brekker',       password: 'password123', role: 'user',   is_owner: 'no',  name: 'Kaz Brekker' },
+  { username: 'bbouanich',     password: 'password123', role: 'admin',  is_owner: 'no',  name: 'Beryl Bouanich' },
+  { username: 'quixote',       password: 'password123', role: 'user',   is_owner: 'no',  name: 'Don Quixote' },
+  { username: 'adreemur',      password: 'password123', role: 'user',   is_owner: 'no',  name: 'Asriel Dreemur' },
+  { username: 'hmiku',         password: 'password123', role: 'user',   is_owner: 'no',  name: 'Hatsune Miku' },
+  { username: 'pinkpantheress',password: 'password123', role: 'user',   is_owner: 'no',  name: 'Victoria Walker' },
+  { username: 'ChuuLoona',     password: 'password123', role: 'user',   is_owner: 'no',  name: 'Kim Ji-woo' }
 ];
 
 for (const info of fakeUserInfo) {
-  insertUserInfo.run(info.username, info.password, info.role, info.is_owner);
+  insertUserInfo.run(info.username, info.password, info.role, info.is_owner, info.name);
 }
 
 console.log('★ Database seeded with fake users!');

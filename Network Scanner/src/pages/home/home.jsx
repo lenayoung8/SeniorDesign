@@ -11,16 +11,42 @@ import {
   Legend
 } from 'chart.js';
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Deer() {
   const navigate = useNavigate();
+  const [name, setName] = useState('User'); // 👈 Default fallback
+
+  useEffect(() => {
+    // Read the user from localStorage that was saved on login
+    const stored = localStorage.getItem('user');
+    if (stored) {
+      const user = JSON.parse(stored);
+      setName(user.name); // 👈 Pull the name from stored user
+    } else {
+      // If no user is logged in, redirect back to login
+      navigate('/');
+    }
+  }, []);
+
+  /*
+
+    TODO: 
+  - Randomize graph data for each time run dev
+  - Set up other tables in database
+  - show fake devices in upper div and left graph
+
+  */
+  const date = new Date();
+  const formattedDate = date.toDateString()
+
 
   return (
     <>
       <div className="topnav">
-        <span id="idname">Hello, User</span>
+        <span id="idname">Hello, {name.split(" ")[0]}!</span>
         <a href="#home">Home</a>
       </div>
 
@@ -104,7 +130,7 @@ export default function Deer() {
                   responsive: true,
                   plugins: {
                     legend: { position: 'top' },
-                    title: { display: true, text: 'Weekly Device Activity' }
+                    title: { display: true, text: [`Weekly Device Activity`, `${formattedDate}`] }
                   }
                 }}
               />
