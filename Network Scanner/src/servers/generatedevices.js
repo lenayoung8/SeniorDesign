@@ -53,7 +53,7 @@ const insertDevice = db.prepare(`
 `);
 
 // Generate 3 trusted devices
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 5; i++) {
   insertDevice.run(
     randomIP(),
     randomMAC(),

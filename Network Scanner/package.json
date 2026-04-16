@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "nodemon src/servers/server.js",
-    "dev:both": "concurrently \"npm run dev\" \"npm run server\"",
+    "both": "concurrently \"npm run dev\" \"npm run server\"",
     "users": "node src/servers/generateusers.js"
   },
   "dependencies": {

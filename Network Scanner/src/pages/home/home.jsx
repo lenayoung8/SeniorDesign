@@ -1,5 +1,15 @@
 import './home.css';
-import deerGif from '../../assets/deer-buck.gif';
+import deerGif from '../../assets/deer-buck.gif'; // fallback
+
+import phoneImg from '../../assets/phone.png';
+import printerImg from '../../assets/printer.png';
+import laptopImg from '../../assets/laptop.png';
+import tabletImg from '../../assets/tablet.png';
+import desktopImg from '../../assets/desktop.png';
+import routerImg from '../../assets/router.png';
+import smarttvImg from '../../assets/smarttv.png';
+import cameraImg from '../../assets/camera.png';
+
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -17,6 +27,18 @@ import axios from 'axios';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Deer() {
+
+  // IMAGE MAP
+  const deviceImages = {
+    'Phone':           phoneImg,
+    'Printer':         printerImg,
+    'Laptop':          laptopImg,
+    'Tablet':          tabletImg,
+    'Desktop':         desktopImg,
+    'Router':          routerImg,
+    'Smart TV':        smarttvImg,
+    'Security Camera': cameraImg,
+  };
 
   // HANDLE USER
   const navigate = useNavigate();
@@ -38,10 +60,18 @@ export default function Deer() {
   // HANDLE DEVICES
   const [devices, setDevices] = useState([]);
 
+  const [trustedDevices, setTrustedDevices] = useState([]);
+
   useEffect(() => {
+    // Get untrusted devices
     axios.get('/api/devices/untrusted')
       .then(res => setDevices(res.data))
       .catch(err => console.error('Failed to fetch devices:', err));
+
+    // Get trusted devices
+    axios.get('/api/devices/trusted')
+      .then(res => setTrustedDevices(res.data))
+      .catch(err => console.error('Failed to fetch trusted devices:', err));
   }, []);
 
   /*
@@ -67,14 +97,43 @@ export default function Deer() {
         <h3>Your Devices At a Glance</h3>
         
         {/* Devices Box */}
+        
+        
         <div id="DevicesBox">
-          <p>Display Devices and Icons Here</p>
-          <img src={deerGif} alt="deer" />
-          <img src={deerGif} alt="deer" />
-          <br />
-          <img src={deerGif} alt="deer" />
+          <p>Trusted Devices</p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '16px',
+            padding: '10px'
+          }}>
+            {trustedDevices.length === 0 ? (
+              <p>No trusted devices found.</p>
+            ) : (
+              trustedDevices.map(device => (
+                <div key={device.id} style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  padding: '10px',
+                }}>
+                  <img 
+                    src={deviceImages[device.type] || deerGif} 
+                    alt={device.type} 
+                    width="180px" 
+                  />
+                  <span style={{ marginTop: '8px', fontWeight: 'bold' }}>
+                    {device.type}
+                  </span>
+                  <span style={{ fontSize: '12px', color: '#888' }}>
+                    Family
+                  </span>
+                </div>
+              ))
+            )}
+          </div>
         </div>
-
         
         {/* Add Device Button */}
         <div className="add-device-container">
