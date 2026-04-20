@@ -77,6 +77,17 @@ if (process.env.DB_TYPE === 'mysql') {
       is_trusted INTEGER
     );
 
+    CREATE TABLE IF NOT EXISTS wireshark_scans (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      source TEXT,
+      destination TEXT,
+      protocol TEXT,
+      info TEXT,
+      type TEXT,
+      mac_addr TEXT
+    );
+
   `);
 
   /*
@@ -98,7 +109,14 @@ if (process.env.DB_TYPE === 'mysql') {
     );
 
     CREATE TABLE IF NOT EXISTS wireshark_scans (
-      
+      id (int AI PK)
+      time (timestamp)
+      source (varshar)
+      destination (varchar)
+      protocol (varchar)
+      info (text)
+      type (varchar)
+      mac_addr (char)
     );
 
     CREATE TABLE IF NOT EXISTS nmap_scans (

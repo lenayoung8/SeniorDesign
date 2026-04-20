@@ -85,6 +85,25 @@ export default function Deer() {
   const date = new Date();
   const formattedDate = date.toDateString()
 
+  // Add this helper above your return statement
+  const getLast5Days = () => {
+    const days = [];
+    for (let i = 4; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      days.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+    }
+    return days;
+  };
+
+  const randomData = () => {
+    const data = [];
+    for (let i = 0; i < 5; i++) {
+      data.push(Math.floor(Math.random() * 10));
+    }
+    return data;
+  };
+
 
   return (
     <>
@@ -188,22 +207,22 @@ export default function Deer() {
             <h3>Graph</h3>
             <div id="GraphBox">
               <Bar
-                data={{
-                  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                  datasets: [{
-                    label: 'Devices Connected',
-                    data: [3, 5, 2, 8, 4],
-                    backgroundColor: '#a9ba96',
-                  }]
-                }}
-                options={{
-                  responsive: true,
-                  plugins: {
-                    legend: { position: 'top' },
-                    title: { display: true, text: [`Weekly Device Activity`, `${formattedDate}`] }
-                  }
-                }}
-              />
+              data={{
+                labels: getLast5Days(),  // Dynamic dates instead of ['Mon', 'Tue'...]
+                datasets: [{
+                  label: 'Devices Connected',
+                  data: randomData(),  // Replace with real data later
+                  backgroundColor: '#a9ba96',
+                }]
+              }}
+              options={{
+                responsive: true,
+                plugins: {
+                  legend: { position: 'top' },
+                  title: { display: true, text: [`Weekly Device Activity`, `${formattedDate}`] }
+                }
+              }}
+            />
             </div>
           </div>
         </div>
