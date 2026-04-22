@@ -9,17 +9,19 @@ const envPath = path.resolve(__dirname, '../../.env');
 console.log('Looking for .env at:', envPath);
 
 dotenv.config({ path: envPath });
-console.log('> DB_TYPE is:', process.env.DB_TYPE);
+const dbType = (process.env.DB_TYPE || 'mysql').toLowerCase();
+console.log('> DB_TYPE is:', dbType);
 
 let db;
 
-if (process.env.DB_TYPE === 'mysql') {
+if (dbType === 'mysql') {
   // MySQL mode, for backend devs
   console.log('🗄️ Using MySQL database...');
   const mysql = await import('mysql2/promise');
   
   const pool = mysql.default.createPool({
     host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT || 3306),
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
