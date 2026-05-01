@@ -14,10 +14,12 @@ DB_NAME = os.getenv('DB_NAME', 'data')
 
 WINDOW_MINUTES = int(os.getenv('ANOMALY_WINDOW_MINUTES', '10'))
 TRAFFIC_SPIKE_THRESHOLD = int(os.getenv('TRAFFIC_SPIKE_THRESHOLD', '200'))
+UNKNOWN_DEST_REPEAT_THRESHOLD = int(os.getenv('UNKNOWN_DEST_REPEAT_THRESHOLD', '3'))
 ALLOWED_NETWORKS_RAW = os.getenv(
     'ALLOWED_NETWORKS',
     '127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16'
 )
+POPUP_ENABLED = os.getenv('ANOMALY_POPUP_ENABLED', '1').strip().lower() in ('1', 'true', 'yes', 'on')
 
 
 def get_db():
@@ -128,6 +130,32 @@ def load_known_devices(cursor):
     return known_ips, known_macs
 
 
+def format_popup_message(anomalies):
+    lines = ["Security anomalies detected:"]
+    for anomaly in anomalies:
+        kind = anomaly.get('kind', 'anomaly')
+        message = anomaly.get('message', 'Unexpected activity detected.')
+        lines.append(f"- [{kind}] {message}")
+    return "\n".join(lines)
+
+
+def show_popup(message):
+    if not POPUP_ENABLED:
+        return
+    try:
+        import tkinter as tk
+        from tkinter import messagebox
+
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showwarning("Anomaly Detection Alert", message)
+        root.destroy()
+    except Exception:
+        # Fallback for environments where Tk is unavailable.
+        print("ANOMALY ALERT:")
+        print(message)
+
+
 def detect_anomalies():
     conn = None
     try:
@@ -148,6 +176,7 @@ def detect_anomalies():
             anomalies = []
             seen_unknown_devices = set()
             seen_unknown_destinations = set()
+            unknown_destination_counts = {}
 
             for event in events:
                 src_ip = parse_ip(event.get('source'))
@@ -182,15 +211,25 @@ def detect_anomalies():
 
                     if not in_known_ips and not in_allowed_network and not same_as_source:
                         key = (src_ip or '', dst_ip)
-                        if key not in seen_unknown_destinations:
-                            seen_unknown_destinations.add(key)
-                            anomalies.append({
-                                'kind': 'unknown_destination_ip',
-                                'severity': 'medium',
-                                'source_ip': src_ip,
-                                'destination_ip': dst_ip,
-                                'message': 'Device attempted to contact an unknown IP outside known devices/network.',
-                            })
+                        unknown_destination_counts[key] = unknown_destination_counts.get(key, 0) + 1
+
+            # Unknown destination should be repeated behavior (not one-off).
+            for key, count in unknown_destination_counts.items():
+                if count < UNKNOWN_DEST_REPEAT_THRESHOLD:
+                    continue
+                if key in seen_unknown_destinations:
+                    continue
+                seen_unknown_destinations.add(key)
+                src_key, dst_key = key
+                anomalies.append({
+                    'kind': 'unknown_destination_ip',
+                    'severity': 'medium',
+                    'source_ip': src_key or None,
+                    'destination_ip': dst_key,
+                    'attempt_count': count,
+                    'threshold': UNKNOWN_DEST_REPEAT_THRESHOLD,
+                    'message': 'Device repeatedly attempted to contact an unknown IP outside known devices/network.',
+                })
 
             # 3) High traffic spike check
             packet_count = len(events)
@@ -204,12 +243,19 @@ def detect_anomalies():
                     'message': 'Traffic spike detected.',
                 })
 
+            if anomalies:
+                popup_message = format_popup_message(anomalies)
+                show_popup(popup_message)
+            else:
+                popup_message = None
+
             return {
                 'success': True,
                 'window_minutes': WINDOW_MINUTES,
                 'packet_count': packet_count,
                 'anomaly_count': len(anomalies),
                 'anomalies': anomalies,
+                'popup_message': popup_message,
             }, 200
     except pymysql.MySQLError:
         return {

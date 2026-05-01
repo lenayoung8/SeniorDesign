@@ -165,3 +165,112 @@ background-color: #909090;
   background-color: #768663;
 }
 
+
+.alert-banner {
+	position: sticky;
+	top: 52px;
+	z-index: 50;
+	background-color: #fbe9e7;
+	border: 2px solid #e57373;
+	border-radius: 10px;
+	color: #7f1d1d;
+	padding: 10px 14px;
+	margin: 0 20px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#AnomalyBox {
+	height: 50vh;
+	background-color: #dfe8ed;
+	border: 2px solid #a3b1ba;
+	border-radius: 10px;
+	padding: 15px;
+	margin-top: 16px;
+	overflow-y: auto;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.anomaly-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.anomaly-card {
+	background: #fffaf6;
+	border: 1px solid #c9d5de;
+	border-radius: 8px;
+	padding: 10px;
+}
+
+.anomaly-title {
+	text-transform: capitalize;
+	font-weight: 700;
+	color: #2f4257;
+	margin-bottom: 6px;
+}
+
+.anomaly-message {
+	color: #2d3748;
+	margin-bottom: 8px;
+}
+
+.anomaly-meta {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	color: #5c6770;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+.anomaly-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.anomaly-btn {
+	padding: 8px 14px;
+	font-size: 12px;
+	font-weight: 700;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.anomaly-btn.allow {
+	background-color: #4e7b55;
+}
+
+.anomaly-btn.allow:hover {
+	background-color: #406446;
+}
+
+.anomaly-btn.deny {
+	background-color: #b23b3b;
+}
+
+.anomaly-btn.deny:hover {
+	background-color: #932d2d;
+}
+
+.anomaly-btn:disabled {
+	opacity: 0.65;
+	cursor: not-allowed;
+}
+
+.anomaly-error {
+	color: #b23b3b;
+	font-weight: 700;
+}
+
+.anomaly-empty {
+	color: #2d3748;
+}
+
+.anomaly-note {
+	font-size: 12px;
+	color: #5c6770;
+	margin-top: 10px;
+}

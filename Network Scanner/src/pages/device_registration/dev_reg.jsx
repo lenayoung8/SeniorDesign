@@ -1,5 +1,6 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./dev_reg.css";
 
 export default function DeviceRegistration() {
@@ -16,6 +17,7 @@ export default function DeviceRegistration() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -25,13 +27,66 @@ export default function DeviceRegistration() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
 
-    console.log("Submitted:", form);
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) {
+      const msg = "You must be logged in to register devices.";
+      setSubmitError(msg);
+      alert(msg);
+      return;
+    }
 
-    // later: send to backend
-    setSubmitted(true);
+    let user;
+    try {
+      user = JSON.parse(storedUser);
+    } catch {
+      const msg = "Invalid login session. Please log in again.";
+      setSubmitError(msg);
+      alert(msg);
+      return;
+    }
+
+    if (Number(user.role) !== 1) {
+      const msg = "Permission denied: only role=1 users can register devices.";
+      setSubmitError(msg);
+      alert(msg);
+      return;
+    }
+
+    try {
+      const infoParts = [
+        form.name ? `name=${form.name}` : "",
+        form.owner ? `owner=${form.owner}` : "",
+        form.notes ? `notes=${form.notes}` : "",
+      ].filter(Boolean);
+
+      const payload = {
+        requester_username: user.username,
+        mac_address: form.mac,
+        type: form.type,
+        connection_type: "WiFi",
+        network: form.location || "Home Network",
+        info: infoParts.join("; "),
+        is_trusted: form.trusted ? 1 : 0,
+      };
+
+      const response = await axios.post("/api/devices/register", payload);
+
+      if (response.data?.success) {
+        setSubmitted(true);
+      } else {
+        const msg = response.data?.message || "Failed to register device.";
+        setSubmitError(msg);
+        alert(msg);
+      }
+    } catch (err) {
+      const msg = err.response?.data?.message || "Failed to register device.";
+      setSubmitError(msg);
+      alert(msg);
+    }
   };
 
   const handleReset = () => {
@@ -44,6 +99,7 @@ export default function DeviceRegistration() {
       notes: "",
       trusted: false,
     });
+    setSubmitError("");
   };
 
   // Success screen
@@ -180,6 +236,10 @@ export default function DeviceRegistration() {
                 Trust Device
               </label>
             </div>
+
+            {submitError && (
+              <div style={{ color: "#b00020", fontWeight: 600 }}>{submitError}</div>
+            )}
 
             {/* Buttons */}
             <div className="form-footer">

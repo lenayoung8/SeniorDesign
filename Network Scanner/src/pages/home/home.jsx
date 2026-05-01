@@ -1,4 +1,4 @@
-import './home.css';
+﻿import './home.css';
 import deerGif from '../../assets/deer-buck.gif';
 
 import phoneImg from '../../assets/phone.png';
@@ -21,34 +21,40 @@ import {
   Legend
 } from 'chart.js';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Deer() {
   const deviceImages = {
-    'Phone': phoneImg,
-    'Printer': printerImg,
-    'Laptop': laptopImg,
-    'Tablet': tabletImg,
-    'Desktop': desktopImg,
-    'Router': routerImg,
+    Phone: phoneImg,
+    Printer: printerImg,
+    Laptop: laptopImg,
+    Tablet: tabletImg,
+    Desktop: desktopImg,
+    Router: routerImg,
     'Smart TV': smarttvImg,
     'Security Camera': cameraImg,
   };
 
   const navigate = useNavigate();
   const [name, setName] = useState('User');
+  const [username, setUsername] = useState('');
   const [devices, setDevices] = useState([]);
   const [trustedDevices, setTrustedDevices] = useState([]);
   const [anomalies, setAnomalies] = useState([]);
+  const [anomalyError, setAnomalyError] = useState('');
+  const [popupMessage, setPopupMessage] = useState('');
+  const [actionBusy, setActionBusy] = useState({});
+  const lastAnomalySignatureRef = useRef('');
 
   useEffect(() => {
     const stored = localStorage.getItem('user');
     if (stored) {
       const user = JSON.parse(stored);
       setName(user?.name || user?.username || 'User');
+      setUsername(user?.username || '');
     } else {
       navigate('/');
     }
@@ -65,9 +71,40 @@ export default function Deer() {
   }, []);
 
   useEffect(() => {
-    axios.get('/api/jules/anomalies')
-      .then((res) => setAnomalies(res.data?.anomalies || []))
-      .catch(() => setAnomalies([]));
+    let mounted = true;
+
+    const fetchAnomalies = async () => {
+      try {
+        const res = await axios.get('/api/jules/anomalies');
+        const next = res.data?.anomalies || [];
+        const signature = next.map((a) => `${a.kind}|${a.source_ip || ''}|${a.destination_ip || ''}|${a.mac_addr || ''}`).join('||');
+
+        if (mounted) {
+          setAnomalies(next);
+          setAnomalyError('');
+
+          if (next.length > 0 && signature !== lastAnomalySignatureRef.current) {
+            const text = `Security alert: ${next[0].message || 'Anomaly detected.'}`;
+            setPopupMessage(text);
+            window.alert(text);
+          }
+
+          lastAnomalySignatureRef.current = signature;
+        }
+      } catch {
+        if (mounted) {
+          setAnomalyError('Could not load anomaly status.');
+        }
+      }
+    };
+
+    fetchAnomalies();
+    const timer = setInterval(fetchAnomalies, 15000);
+
+    return () => {
+      mounted = false;
+      clearInterval(timer);
+    };
   }, []);
 
   const date = new Date();
@@ -101,12 +138,51 @@ export default function Deer() {
     return String(portValue);
   };
 
+  const topAnomalyText = useMemo(() => {
+    if (!anomalies.length) return '';
+    return anomalies[0]?.message || 'Anomaly detected.';
+  }, [anomalies]);
+
+  const applyAnomalyAction = async (anomaly, decision, idx) => {
+    if (!username) {
+      window.alert('No logged-in username found. Please log in again.');
+      return;
+    }
+
+    const key = `${idx}-${decision}`;
+    setActionBusy((prev) => ({ ...prev, [key]: true }));
+    try {
+      const res = await axios.post('/api/jules/anomalies/action', {
+        requester_username: username,
+        anomaly,
+        decision,
+      });
+      const msg = res.data?.message || 'Action saved.';
+      window.alert(msg);
+      setPopupMessage(msg);
+
+      const next = anomalies.filter((_, i) => i !== idx);
+      setAnomalies(next);
+    } catch (err) {
+      const msg = err.response?.data?.message || 'Failed to apply anomaly action.';
+      window.alert(msg);
+    } finally {
+      setActionBusy((prev) => ({ ...prev, [key]: false }));
+    }
+  };
+
   return (
     <>
       <div className="topnav">
         <span id="idname">Hello, {String(name || 'User').split(' ')[0]}!</span>
         <a href="#home">Home</a>
       </div>
+
+      {anomalies.length > 0 && (
+        <div className="alert-banner">
+          <strong>Security Alert:</strong> {topAnomalyText}
+        </div>
+      )}
 
       <div style={{ padding: '60px 20px 0' }}>
         <h3>Your Devices At a Glance</h3>
@@ -213,17 +289,50 @@ export default function Deer() {
                 }}
               />
             </div>
-            <div style={{ marginTop: '12px' }}>
-              <h3>Anomalies</h3>
+
+            <div id="AnomalyBox">
+              <h3>Security Anomalies</h3>
+              {anomalyError && <p className="anomaly-error">{anomalyError}</p>}
               {anomalies.length === 0 ? (
-                <p>No recent anomalies detected.</p>
+                <p className="anomaly-empty">No recent anomalies detected.</p>
               ) : (
-                <ul>
-                  {anomalies.slice(0, 5).map((a, i) => (
-                    <li key={`${a.kind}-${i}`}>{a.kind}: {a.message}</li>
-                  ))}
-                </ul>
+                <div className="anomaly-list">
+                  {anomalies.slice(0, 8).map((a, i) => {
+                    const allowKey = `${i}-allow`;
+                    const denyKey = `${i}-deny`;
+                    return (
+                      <div className="anomaly-card" key={`${a.kind}-${i}`}>
+                        <div className="anomaly-title">{a.kind.replaceAll('_', ' ')}</div>
+                        <div className="anomaly-message">{a.message}</div>
+                        <div className="anomaly-meta">
+                          <span>Source: {a.source_ip || 'n/a'}</span>
+                          <span>Destination: {a.destination_ip || 'n/a'}</span>
+                          <span>MAC: {a.mac_addr || 'n/a'}</span>
+                        </div>
+                        <div className="anomaly-actions">
+                          <button
+                            type="button"
+                            className="anomaly-btn allow"
+                            disabled={!!actionBusy[allowKey] || !!actionBusy[denyKey]}
+                            onClick={() => applyAnomalyAction(a, 'allow', i)}
+                          >
+                            Allow
+                          </button>
+                          <button
+                            type="button"
+                            className="anomaly-btn deny"
+                            disabled={!!actionBusy[allowKey] || !!actionBusy[denyKey]}
+                            onClick={() => applyAnomalyAction(a, 'deny', i)}
+                          >
+                            Block
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               )}
+              {popupMessage && <p className="anomaly-note">{popupMessage}</p>}
             </div>
           </div>
         </div>
